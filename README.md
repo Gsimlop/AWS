@@ -97,3 +97,84 @@ def lambda_handler(event, context):
             'uppercase': uppercase_string
         })
     }
+```
+---
+
+## 6. Lanzamiento de una Base de Datos NoSQL con DynamoDB
+
+Configuración de una tabla DynamoDB para almacenar perfiles de clientes.
+
+- Acceder al servicio **DynamoDB** y crear una tabla:
+  - **Nombre de la tabla**: `CustomerProfiles`
+  - **Clave de partición**: `CustomerID` (tipo string)
+
+- Crear un ítem con los siguientes atributos:
+
+| Atributo   | Valor                  |
+|------------|------------------------|
+| CustomerID | CUST001                |
+| Name       | Jane Doe               |
+| Email      | jane.doe@example.com   |
+
+- Usar la opción **Query** para buscar al cliente con `CustomerID = CUST001`.
+
+> **Nota**: las búsquedas son **sensible a mayúsculas y minúsculas**.
+
+** Aprendizajes:**  
+Bases de datos NoSQL, claves de partición, estructura de datos flexible, consultas eficientes con claves.
+
+---
+
+##  7. Creación de una VPC
+
+Creación de una red privada virtual (VPC) segura para lanzar recursos dentro de un entorno controlado.
+
+- Acceder al servicio **VPC** y elegir `VPC and more`.
+- Configurar los siguientes parámetros:
+  - **Nombre**: `datacampvpc`
+  - **Número de subredes públicas**: `0` (para mantenerlo aislado)
+
+> Esta VPC permite mayor control sobre la red, ideal para entornos seguros o de producción.
+
+** Aprendizajes:**  
+Segmentación de red, configuración de subredes, aislamiento de recursos, bases para seguridad de red.
+
+---
+
+##  8. Optimización de S3 con Intelligent-Tiering
+
+Configuración de almacenamiento inteligente en S3 para manejar patrones de acceso impredecibles y reducir costos.
+
+- Crear un bucket en S3 con:
+  - **Tipo**: General purpose
+  - **Nombre único**
+  - **Propiedad de objetos**: ACLs desactivadas
+  - **Habilitar versionado**
+
+- Subir un archivo (`datacamp-logo.png`) y antes de cargarlo:
+  - Cambiar la clase de almacenamiento a **Intelligent-Tiering**
+
+- Configurar una **regla de ciclo de vida**:
+  - Aplicar a **todos los objetos**
+  - Transicionar versiones actuales de objetos a **Intelligent-Tiering**
+  - **Días después de la creación**: 0
+
+>  Ideal para datos cuyo patrón de acceso cambia con el tiempo.
+
+** Aprendizajes:**  
+Clases de almacenamiento en S3, automatización mediante políticas de ciclo de vida, optimización de costos.
+
+---
+
+##  Aprendizajes Generales ## 
+
+Durante estos ejercicios se exploraron y aplicaron varios conceptos clave del ecosistema AWS:
+
+- 🔹 **Amazon S3**: almacenamiento de objetos, versionado, clases de almacenamiento.
+- 🔹 **Amazon EC2**: despliegue de servidores, plantillas de lanzamiento, autoescalado.
+- 🔹 **AWS Lambda**: computación sin servidor y lógica de backend.
+- 🔹 **Amazon DynamoDB**: bases de datos NoSQL con rendimiento escalable.
+- 🔹 **Amazon VPC**: control total sobre la red y seguridad de recursos.
+- 🔹 **Gestión de costos**: uso de almacenamiento inteligente y automatizaciones para eficiencia operativa.
+
+Estos ejercicios refuerzan habilidades prácticas en arquitectura, despliegue y administración de soluciones en la nube con AWS.
